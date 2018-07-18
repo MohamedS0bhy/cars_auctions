@@ -1,4 +1,4 @@
-let url = '/carsAuctions/public/';
+let url = '/cars_auctions/public/';
 let api_url = 'http://127.0.0.1:8000/api/';//will store api url 
 
 // will get data from login form and send request to check data

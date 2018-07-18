@@ -12,11 +12,12 @@ class auctionSeeder extends Seeder
      */
     public function run()
     {
+        
         $auction = auction::create([
             'car_name' => 'car1',
             'price' => 3000,
             'start_bid_amount' => 100,
-            'pics' => "[noimg.jpg]",
+            'pics' => json_encode(['noimg.jpeg']),
             'location' => 'cairo,egypt',
             'start_bid_date' => date('Y-m-d'),
             'end_bid_date' => date("Y-m-d", strtotime("+ 1 day"))
@@ -26,7 +27,7 @@ class auctionSeeder extends Seeder
             'car_name' => 'car2',
             'price' => 3000,
             'start_bid_amount' => 100,
-            'pics' => "[noimg.jpg]",
+            'pics' => json_encode(['noimg.jpeg']),
             'location' => 'cairo,egypt',
             'start_bid_date' => date('Y-m-d'),
             'end_bid_date' => date("Y-m-d", strtotime("+ 1 day"))

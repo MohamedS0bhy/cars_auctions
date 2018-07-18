@@ -17,7 +17,7 @@ function getAllOpenAuctions(){
                 innerhtml += `<div class="col-md-4 block">
                                 <div class="item">
                                     <div class="img">
-                                        <img src="${url}uploads/${JSON.parse(data.result[i].pics)[0]}" alt="" >
+                                        <img src="${url}uploads/${JSON.parse(data.result[i].pics)[0]}" alt="No img" >
                                     </div>
                                     <div class="details">
                                         <ul>

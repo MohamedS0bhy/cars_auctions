@@ -1,0 +1,47 @@
+.item{
+    border-bottom: 3px solid steelblue;
+    border-right: 3px solid steelblue;
+    
+}
+
+.item .img{
+    height: 250px;
+    
+}
+
+.item .img img{
+    width: 80%;
+    height: 80%;
+    border-radius: 9px;
+    overflow: hidden;
+    display: block;
+    margin: 1px auto;
+}
+
+.block{
+    margin-top:15px;
+}
+
+#bold{
+    font-weight: bold;
+}
+
+li{
+    list-style: none
+}
+
+li#customLi{
+    padding: 5px 10px 3px 3px;
+    margin-top: 5px;
+}
+
+#newAuction{
+    width: 60%;
+    margin : 0 auto ;
+}
+
+.details{
+    margin-top: 30px;
+    background: #dee0e1;
+    padding: 12px
+}

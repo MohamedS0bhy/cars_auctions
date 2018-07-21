@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
-use GuzzleHttp\RequestOptions;
-use GuzzleHttp\Exception\GuzzleException;
 
 class AuctionController extends Controller
 {
@@ -63,25 +60,55 @@ class AuctionController extends Controller
             $i++;
         }
         $host = ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1') ? 'http://127.0.0.1:8000' : $_SERVER['SERVER_NAME'] ;
-        $client = new Client();
-        $response = $client->post($host . '/api/auction/add',[
-            RequestOptions::JSON => [
-                'token' => (isset($_COOKIE['token'])) ? $_COOKIE['token'] : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTUzMTgyMDM3OCwiZXhwIjoxNTMxODIzOTc4LCJuYmYiOjE1MzE4MjAzNzgsImp0aSI6InN1Qk5lb2RYdmxxTXJUQkciLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.1wqhKSN_7EufccNOQc9XixVkxRv_5Yy9Ey6JXTOKPrI',
-                'car_name' => $request->car_name,
-                'price' => $request->price,
-                'start_bid_amount' => $request->start_bid_amount,
-                'pics' => json_encode($imgs),
-                'location' => $request->location,
-                'start_bid_date' => $start_bid_date,
-                'end_bid_date' => $end_bid_date
-                ]
-        ]);
-        $r = json_decode($response->getBody()->getContents());
-        if( $r->success ){
+        $request = [
+            'token'=> $_COOKIE['token'],
+            'car_name' => $request->car_name,
+            'price' => $request->price,
+            'start_bid_amount' => $request->start_bid_amount,
+            'pics' => json_encode($imgs),
+            'location' => $request->location,
+            'start_bid_date' => $start_bid_date,
+            'end_bid_date' => $end_bid_date
+        ];
+
+
+        $ch = curl_init( $host . '/api/auction/add' );
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: multipart/form-data"));
+
+        curl_setopt( $ch, CURLOPT_POST, 1);
+        curl_setopt( $ch, CURLOPT_POSTFIELDS, ($request));
+
+        curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+        curl_setopt($ch, CURLOPT_USERAGENT, "");   
+        curl_setopt($ch, CURLOPT_FRESH_CONNECT, 1);   
+        curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
+
+
+        $res=curl_exec( $ch );
+        $r= json_decode($res,true);
+
+        if( $r['success'] ){
             return back()->with('success' , 'added successfully');
         }else{
             return back()->with('failed' , $r->result);
         }
+
+        // $client = new Client();
+        // $response = $client->post($host . '/api/auction/add',[
+        //     RequestOptions::JSON => [
+        //         'token' => (isset($_COOKIE['token'])) ? $_COOKIE['token'] : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTUzMTgyMDM3OCwiZXhwIjoxNTMxODIzOTc4LCJuYmYiOjE1MzE4MjAzNzgsImp0aSI6InN1Qk5lb2RYdmxxTXJUQkciLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.1wqhKSN_7EufccNOQc9XixVkxRv_5Yy9Ey6JXTOKPrI',
+        //         'car_name' => $request->car_name,
+        //         'price' => $request->price,
+        //         'start_bid_amount' => $request->start_bid_amount,
+        //         'pics' => json_encode($imgs),
+        //         'location' => $request->location,
+        //         'start_bid_date' => $start_bid_date,
+        //         'end_bid_date' => $end_bid_date
+        //         ]
+        // ]);
+        // $r = json_decode($response->getBody()->getContents());
 
     }
 

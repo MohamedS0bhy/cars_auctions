@@ -45,3 +45,23 @@ li#customLi{
     background: #dee0e1;
     padding: 12px
 }
+
+img#bigloadingGif{
+    width: 40%;
+    max-height: 100px;
+    margin-left: 25%;
+  }
+
+  img#smallloadingGif{
+    width: 35%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  img#logoutGif{
+    width: 15%;
+    float: right;
+    position: relative;
+    bottom: 85px;
+    right: 40px;
+  }

@@ -37,7 +37,7 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-
+    <img src="{{ asset('images/loading1.gif') }}" alt="Loading" id="logoutGif" style="display:none">
     @if (\Session::has('success'))
     <div class="alert alert-success">
         <ul>
@@ -70,7 +70,7 @@
     <div class="container">
         <div class="row" id="newAuction">
 
-            <form action="{{ url('/new/auction') }}"  method="POST" class="form-horizontal" enctype="multipart/form-data">
+            <form action="{{ url('/new/auction') }}"  method="POST" class="form-horizontal" enctype="multipart/form-data" >
                 @csrf
                 <div class="form-group">
                     <label for="carName" class="col-sm-3 control-label">Car Name</label>
@@ -129,7 +129,7 @@
                 
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
-                    <button type="submit" class="btn btn-lg btn-info" style="padding-left:30px;padding-right: 30px;">Add</button>
+                    <button  type="submit" class="btn btn-lg btn-info" style="padding-left:30px;padding-right: 30px;">Add</button>
                     </div>
                 </div>
             </form>

@@ -37,7 +37,7 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-
+    <img src="{{ asset('images/loading1.gif') }}" alt="Loading" id="logoutGif" style="display:none">
 
 
     <div style="display:none" class="alert alert-danger" id="dangerMessage"></div>
@@ -45,7 +45,7 @@
 
     <div class="container">
         <div class="row" id="panel">
-
+                <img src="{{ asset('images/loading.gif') }}" alt="Loading" id="bigloadingGif" >
         </div>
     </div>
 

@@ -1,5 +1,6 @@
 <?php
 use App\auction;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,4 +49,12 @@ Route::get('/panel' , function(){
 
 Route::get('/auction/details/{id}' , function($id){
     return view('auction.details' , compact('id'));
+});
+
+Route::get('/pivot', function(){
+    $user =User::find(2);
+    
+    foreach ($user->auctions as $role) {
+        echo ( $role->pivot->bid_amount);
+    }
 });

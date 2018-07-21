@@ -16,6 +16,7 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next)
     {
+        
         if(isset($_COOKIE['token'])){
 
             JWTAuth::setToken($_COOKIE['token']);

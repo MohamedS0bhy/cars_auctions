@@ -36,13 +36,13 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-
+    <img src="{{ asset('images/loading1.gif') }}" alt="Loading" id="logoutGif" style="display:none">
     <div style="display:none" class="alert alert-danger" id="dangerMessage"></div>
     <div style="display:none" class="alert alert-success" id="successMessage"></div>
 
     <div class="container">
         <div class="row" id="homeData">
-                
+            <img src="{{ asset('images/loading.gif') }}" alt="Loading" id="bigloadingGif" >
         </div>
     </div>
 

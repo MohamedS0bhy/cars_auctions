@@ -59,6 +59,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function auctions(){
-        return $this->belongsToMany('App\auction');
+        return $this->belongsToMany('App\auction')->withPivot('bid_amount')->withTimestamps();
     }
 }

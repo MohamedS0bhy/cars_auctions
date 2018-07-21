@@ -1,6 +1,7 @@
 // load all open auctions for user 
 // for home blade file
 function getAllOpenAuctions(){
+    console.log('all open auctions');
     $.ajax({
         type : 'GET',
         url : api_url + 'auction/open/all',
@@ -26,7 +27,7 @@ function getAllOpenAuctions(){
                                             <li>Start Bid Date : <span id="bold">${data.result[i].start_bid_date}</span></li>
                                             <li>End Bid Date : <span id="bold">${data.result[i].end_bid_date}</span></li>
                                             <li>Start Bid Amount : <span id="bold">${data.result[i].start_bid_amount}$</span></li>
-                                            <li>Price : <span id="bold">${data.result[i].price}$</span> - without bids.</li>
+                                            <li>final Price : <span id="bold">${data.result[i].start_bid_amount}$</span></li>
                                             <li id="customLi"><a href="${url}auction/details/${data.result[i].id}">more Info -&gt; </a></li>
                                         </ul>
                                     </div>
@@ -48,6 +49,7 @@ function getAllOpenAuctions(){
 // for details blade file
 // take auction id
 function getAuctionDetails(id){
+    console.log('auction details');
     $.ajax({
         type : 'GET',
         url : api_url + 'auction/' + id,
@@ -96,10 +98,10 @@ function getAuctionDetails(id){
             // end carousel html
 
             // show add bid button if auction is open
-            var isOpen = (result.state == 'open') ? `<li><button class="btn  btn-success" onClick="getUserBid(${result.id})">Add Bid </button></li>` : '';
-            
+            var isOpen = (result.state == 'open' && (endBidDate >= (new Date()))) ? true : false;
+            var bidBtn = isOpen ? `<li><button class="btn  btn-success" onClick="getUserBid(${result.id})">Add Bid </button></li>` : '';
             // show auction duration in days or closed if auction is closed
-            datehtml = (result.state == 'open') ? datehtml : 'Closed for now!';
+            datehtml = isOpen ?  datehtml : 'Closed for now!';
             
             innerhtml += `<div class="details row">
             <ul class="col-md-8">
@@ -108,8 +110,8 @@ function getAuctionDetails(id){
                 <li><h3> Start Bid Date : <span id="bold">${result.start_bid_date}</span></h3></li>
                 <li><h3> End Bid Date : <span id="bold">${result.end_bid_date}</span></h3></li>
                 <li><h3> Start Bid Amount : <span id="bold">${result.start_bid_amount}$</span></h3></li>
-                <li><h3> Price : <span id="bold">${result.price}$</span> - without bids.</h3></li>
-                ${isOpen}
+                <li><h3> final Price : <span id="bold">${result.start_bid_amount}$</span>.</h3></li>
+                ${bidBtn}
             </ul>
             <div col-md-4><h1>${datehtml}</h1></div>
             </div>`;
@@ -130,6 +132,7 @@ function getAuctionDetails(id){
 // then call addBid()
 // auction id 
 function getUserBid(id){
+    console.log('user bid');
     var bid = prompt("Please enter Bid value:");
     if(bid != null){
         bid = parseFloat(bid);
@@ -152,6 +155,7 @@ function getUserBid(id){
 // then call changeState()
 // auction id  , new auction state
 function getNewEndDate(id , state){
+    console.log('new end date');
     if(state == 'closed')
         changeState(id , state , null);
     else{
@@ -182,7 +186,7 @@ function getNewEndDate(id , state){
 // add new bid
 // auction id - bid value
 function addBid(id , newBid){
-   
+    console.log('add bid');
     $.ajax({
         type : 'POST',
         url : api_url + 'auction/new/bid',
@@ -214,6 +218,7 @@ function addBid(id , newBid){
 // and load them into table in admin.index blade file
 // for admin panel
 function getAllAuctions(){
+    console.log('all auctions');
     $.ajax({
         type : 'GET' ,
         url : api_url + 'auction/all',
@@ -249,6 +254,7 @@ function getAllAuctions(){
 // if it changed from open to close endDate = null
 // otherwise endDate will be the new bid end date
 function changeState(id ,state , endDate){
+    console.log('change state');
     $.ajax({
         type : 'POST' ,
         url : api_url + 'auction/state/change',

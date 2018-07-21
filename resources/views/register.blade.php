@@ -9,6 +9,7 @@
   
   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
@@ -50,7 +51,7 @@
 
       <div class="row">
         <div class="col-xs-8">
-          
+          <img src="{{ asset('images/loading.gif') }}" alt="Loading" id="smallloadingGif" style="display:none">
         </div>
         <!-- /.col -->
         <div class="col-xs-4">

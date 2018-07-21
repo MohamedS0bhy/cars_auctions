@@ -51,6 +51,9 @@ class AuctionController extends Controller
         if($start_bid_date < $today || $end_bid_date < $today || $start_bid_date > $end_bid_date)
             return back()->with('failed' , 'invalid start or end date');
 
+        if($request->input('start_bid_amount') < $request->input('price'))
+            return back()->with('failed' , 'Start Bid must be greater than or qual Price !');
+            
         $imgs = array();
         $i=1;
         foreach($request->pics as $image){
@@ -59,9 +62,9 @@ class AuctionController extends Controller
             $imgs[] =  $newImgName;
             $i++;
         }
-
+        $host = ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1') ? 'http://127.0.0.1:8000' : $_SERVER['SERVER_NAME'] ;
         $client = new Client();
-        $response = $client->post('http://127.0.0.1:8000/api/auction/add',[
+        $response = $client->post($host . '/api/auction/add',[
             RequestOptions::JSON => [
                 'token' => (isset($_COOKIE['token'])) ? $_COOKIE['token'] : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTUzMTgyMDM3OCwiZXhwIjoxNTMxODIzOTc4LCJuYmYiOjE1MzE4MjAzNzgsImp0aSI6InN1Qk5lb2RYdmxxTXJUQkciLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.1wqhKSN_7EufccNOQc9XixVkxRv_5Yy9Ey6JXTOKPrI',
                 'car_name' => $request->car_name,

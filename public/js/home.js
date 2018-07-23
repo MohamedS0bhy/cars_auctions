@@ -98,7 +98,7 @@ function getAuctionDetails(id){
             // end carousel html
 
             // show add bid button if auction is open
-            var isOpen = (result.state == 'open' && (endBidDate >= (new Date()))) ? true : false;
+            var isOpen = (result.state == 'open' && (endBidDate >= (new Date())) && ( (new Date()) >= startBidDate )) ? true : false;
             var bidBtn = isOpen ? `<li><button class="btn  btn-success" onClick="getUserBid(${result.id})">Add Bid </button></li>` : '';
             // show auction duration in days or closed if auction is closed
             datehtml = isOpen ?  datehtml : 'Closed for now!';

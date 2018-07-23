@@ -1,8 +1,9 @@
-let host = (location.hostname == 'localhost' || location.hostname == '127.0.0.1') ? 'http://127.0.0.1:8000' : location.hostname ;
-let url = host + '/'; //will store base url
-let api_url = host + '/api/';//will store api url 
-console.log(host);
-console.log(api_url);
+let url = '/'; //will store base url
+let api_url = 'https://carsauctions.herokuapp.com/api/';//will store api url 
+if(location.hostname == 'localhost'){
+    url = '/carsauctions/public/';
+   api_url = 'http://127.0.0.1:8000/api/';
+}
 // will get data from login form and send request to check data
 // and return with token if success
 // and redirect to proper page based on user role

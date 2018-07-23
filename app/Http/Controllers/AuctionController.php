@@ -59,7 +59,7 @@ class AuctionController extends Controller
             $imgs[] =  $newImgName;
             $i++;
         }
-        $host = ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1') ? 'http://127.0.0.1:8000' : 'https://carsauctions.herokuapp.com/api/' ;
+        $host = ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1') ? 'http://127.0.0.1:8000' : 'https://carsauctions.herokuapp.com' ;
         $request = [
             'token'=> $_COOKIE['token'],
             'car_name' => $request->car_name,

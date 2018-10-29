@@ -60,5 +60,5 @@ Route::get('/pivot', function(){
 });
 
 // social Authentication
-Route::get('auth/{{ provider }}', 'Auth\SocialAuthController@redirectToProvider');
-Route::get('auth/{{ provider }}/callback', 'Auth\SocialAuthController@handleProviderCallback');
+Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');

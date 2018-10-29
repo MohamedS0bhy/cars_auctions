@@ -15,7 +15,7 @@ class CreateProvidersTable extends Migration
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('provider_id');
+            $table->unsignedBigInteger('provider_id');
             $table->string('provider');
             $table->unsignedInteger('user_id');
             $table->timestamps();

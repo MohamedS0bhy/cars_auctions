@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'facebook' => [
+        'client_id' => env('GITHUB_CLIENT_ID' , '166309994313467'),         // Your GitHub Client ID
+        'client_secret' => env('GITHUB_CLIENT_SECRET' , '5821580478b8a31b11fa9cd5d5278da2'), // Your GitHub Client Secret
+        'redirect' => 'https://carsauctions.herokuapp.com/auth/facebook/callback',
+    ],
+
 ];

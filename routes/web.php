@@ -58,3 +58,7 @@ Route::get('/pivot', function(){
         echo ( $role->pivot->bid_amount);
     }
 });
+
+// social Authentication
+Route::get('auth/{{ provider }}', 'Auth\SocialAuthController@redirectToProvider');
+Route::get('auth/{{ provider }}/callback', 'Auth\SocialAuthController@handleProviderCallback');

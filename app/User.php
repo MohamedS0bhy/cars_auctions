@@ -1,14 +1,15 @@
 <?php
 
 namespace App;
-
+use App\Provider;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    use HasApiTokens , Notifiable;
 
     // disable timestamps
     public $timestamps = false;
@@ -60,5 +61,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function auctions(){
         return $this->belongsToMany('App\auction')->withPivot('bid_amount')->withTimestamps();
+    }
+
+    public function linkedSocialAccounts()
+    {
+        return $this->hasMany(Provider::class);
     }
 }

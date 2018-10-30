@@ -13,6 +13,20 @@
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
+  'hivokas/laravel-passport-social-grant' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Hivokas\\LaravelPassportSocialGrant\\Providers\\SocialGrantServiceProvider',
+    ),
+  ),
+  'laravel/passport' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Passport\\PassportServiceProvider',
+    ),
+  ),
   'laravel/socialite' => 
   array (
     'providers' => 

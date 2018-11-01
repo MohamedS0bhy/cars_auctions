@@ -47,7 +47,7 @@ class SocialAuthController extends Controller
 	    		$existUser = new User();
 	    		$existUser->username = $user->getName();
 	    		$existUser->email = $user->getEmail();
-	    		$existUser->password = Hash::make($user->getId());
+	    		$existUser->password = bcrypt($user->getId());
 	    		$existUser->save();
 	    	}
 

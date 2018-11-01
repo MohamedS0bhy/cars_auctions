@@ -58,7 +58,7 @@ class SocialAuthController extends Controller
 	    	$userProvider->save();
 	    }
 
-	    auth()->login($existUser);
+	    auth()->login($existUser , true);
 	    return redirect('/');
 	}
 }
